@@ -9,36 +9,44 @@
   </head>
   <body>
     <div id="map" class="map"></div>
+    <button onclick="doChangeTo(london);">Bounce To London</button>
     <script>
       // Map views always need a projection.  Here we just want to map image
       // coordinates directly to map coordinates, so we create a projection that uses
       // the image extent in pixels.
-      var extent = [0, 0, 1024, 968];
+      var extent = [0, 0, 2000, 2000];
+      var london = [1000,1000];
       var projection = new ol.proj.Projection({
         code: 'xkcd-image',
         units: 'pixels',
         extent: extent
       });
 
-      var map = new ol.Map({
-        layers: [
-          new ol.layer.Image({
-            source: new ol.source.ImageStatic({
-              attributions: '© <a href="http://xkcd.com/license.html">xkcd</a>',
-              url: 'Ronan with borders.jpg',
-              projection: projection,
-              imageExtent: extent
-            })
-          })
-        ],
-        target: 'map',
-        view: new ol.View({
+      var layer = new ol.layer.Image({
+        source: new ol.source.ImageStatic({
+          attributions: '© <a href="http://xkcd.com/license.html">xkcd</a>',
+          url: 'Ronan with borders.jpg',
           projection: projection,
-          center: ol.extent.getCenter(extent),
-          zoom: 2,
-          maxZoom: 8
+          imageExtent: extent
         })
+      })
+
+      var view = new ol.View({
+        projection: projection,
+        center: ol.extent.getCenter(extent),
+        zoom: 1.7,
+        maxZoom: 8
+      })
+
+      var map = new ol.Map({
+        layers: [layer],
+        target: 'map',
+        view: view
       });
+
+      function doChangeTo(location) {
+        map.getView().animate({zoom: 10}, {center: [1000, 1000]});
+      }
     </script>
   </body>
 </html>
