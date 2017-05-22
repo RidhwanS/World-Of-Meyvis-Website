@@ -25,11 +25,19 @@
       var layer = new ol.layer.Image({
         source: new ol.source.ImageStatic({
           attributions: '© <a href="http://xkcd.com/license.html">xkcd</a>',
-          url: 'Ronan with borders.jpg',
+          url: 'World of Meyvis - Korthar.jpg',
           projection: projection,
           imageExtent: extent
         })
-      })
+      });
+
+      var vector = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          url: 'testgeojson.geojson',
+          format: new ol.format.GeoJSON(),
+          wrapX: false
+        })
+      });
 
       var view = new ol.View({
         projection: projection,
@@ -39,10 +47,19 @@
       })
 
       var map = new ol.Map({
-        layers: [layer],
+        layers: [layer, vector],
         target: 'map',
         view: view
       });
+
+      /*var map = new ol.Map({
+        layers: [layer],
+        target: 'map',
+        view: new ol.View({
+          center: [0, 0],
+          zoom: 2
+        })
+      });*/
 
       function doChangeTo(location) {
         map.getView().animate({zoom: 10}, {center: [1000, 1000]});
