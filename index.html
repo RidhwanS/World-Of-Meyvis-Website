@@ -1,69 +1,367 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
   <head>
-    <title>Static Image</title>
-    <link rel="stylesheet" href="https://openlayers.org/en/v4.1.1/css/ol.css" type="text/css">
-    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
-    <script src="https://openlayers.org/en/v4.1.1/build/ol.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>DnD Maps</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/freelancer.min.css" rel="stylesheet">
+
   </head>
-  <body>
-    <div id="map" class="map"></div>
-    <button onclick="doChangeTo(london);">Bounce To London</button>
-    <script>
-      // Map views always need a projection.  Here we just want to map image
-      // coordinates directly to map coordinates, so we create a projection that uses
-      // the image extent in pixels.
-      var extent = [0, 0, 2000, 2000];
-      var london = [1000,1000];
-      var projection = new ol.proj.Projection({
-        code: 'xkcd-image',
-        units: 'pixels',
-        extent: extent
-      });
 
-      var layer = new ol.layer.Image({
-        source: new ol.source.ImageStatic({
-          attributions: '© <a href="http://xkcd.com/license.html">xkcd</a>',
-          url: 'World of Meyvis - Korthar.jpg',
-          projection: projection,
-          imageExtent: extent
-        })
-      });
+  <body id="page-top">
 
-      var vector = new ol.layer.Vector({
-        source: new ol.source.Vector({
-          url: 'testgeojson.geojson',
-          format: new ol.format.GeoJSON(),
-          wrapX: false
-        })
-      });
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">My DnD Maps</a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Maps</a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">Why Did I Do This</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-      var view = new ol.View({
-        projection: projection,
-        center: ol.extent.getCenter(extent),
-        zoom: 1.7,
-        maxZoom: 8
-      })
+    <!-- Header -->
+    <header class="masthead bg-primary text-white text-center">
+      <div class="container">
+        <img class="img-fluid mb-5 d-block mx-auto" src="Map-Pages/d20-Maps-Image.png" alt="" height="250" width="250">
+        <h1 class="text-uppercase mb-0">My DnD Maps</h1>
+        <hr class="star-light">
+        <h2 class="font-weight-light mb-0">Maps I created for Dungeon and Dragons Campaigns</h2>
+      </div>
+    </header>
 
-      var map = new ol.Map({
-        layers: [layer, vector],
-        target: 'map',
-        view: view
-      });
+    <!-- Maps Grid Section -->
+    <section class="portfolio" id="portfolio">
+      <div class="container">
+        <h2 class="text-center text-uppercase text-secondary mb-0">Maps</h2>
+        <hr class="star-dark mb-5">
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                  <i class="fa fa-search-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="Map-Pages/Ronan with borders.jpg" alt="">
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-2">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                  <i class="fa fa-search-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="Map-Pages/Age Of Death Map.jpg" alt="">
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-3">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                  <i class="fa fa-search-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="Map-Pages/Eldren and Efron Age Of Men Map.jpg" alt="">
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-4">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                  <i class="fa fa-search-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="Map-Pages/World of Meyvis - Korthar and Ramshorn.jpg" alt="">
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-5">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                  <i class="fa fa-search-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="Map-Pages/Hiyal, City of Intrigue.jpg" alt="">
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-6">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                  <i class="fa fa-search-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="Map-Pages/Wasat, The Middle City.jpg" alt="">
+            </a>
+          </div>
+		  <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-7">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                  <i class="fa fa-search-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" style="width:350px;height:350px" src="Map-Pages/Hiyal-Palace.jpg" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      /*var map = new ol.Map({
-        layers: [layer],
-        target: 'map',
-        view: new ol.View({
-          center: [0, 0],
-          zoom: 2
-        })
-      });*/
+    <!-- Why Did I Do This Section -->
+    <section class="bg-primary text-white mb-0" id="about">
+      <div class="container">
+        <h2 class="text-center text-uppercase text-white">Why Did I Do This</h2>
+        <hr class="star-light mb-5">
+        <div class="row">
+          <div class="col-lg-4 ml-auto">
+            <p class="lead">First: I end up creating a lot of maps for the various dungeons and dragon campaigns that I run. Sometimes I end up losing them and thats a real bummer. So this is sort of an archive for them.</p>
+          </div>
+          <div class="col-lg-4 mr-auto">
+            <p class="lead">Second: I have always been interested in trying to create a website for my campaigns that would allow players to interact and do searching on the various locations in the image. This is my first steps toward that end goal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      function doChangeTo(location) {
-        map.getView().animate({zoom: 10}, {center: [1000, 1000]});
-      }
-    </script>
+    <div class="copyright py-4 text-center text-white">
+      <div class="container">
+        <small>Copyright &copy; Ridhwan Samadmoten 2018</small>
+		</br>
+		<small>Yea I made this using the bootstrap template: <a href="https://blackrockdigital.github.io/startbootstrap-freelancer/">startbootstrap-freelancer-gh-pages</a></small>
+      </div>
+    </div>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-to-top d-lg-none position-fixed ">
+      <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+      </a>
+    </div>
+
+    <!-- Portfolio Modals -->
+
+    <!-- Portfolio Modal 1 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
+      <div class="portfolio-modal-dialog bg-white">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Ronan - Age of Men</h2>
+              <hr class="star-dark mb-5">
+              <!-- <img class="img-fluid mb-5" src="img/portfolio/cabin.png" alt=""> -->
+			  <div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="Map-Pages/Ronan.html"></iframe>
+			  </div>
+              <!-- <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close Project</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio Modal 2 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-2">
+      <div class="portfolio-modal-dialog bg-white">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Ronan - Age of Death</h2>
+              <hr class="star-dark mb-5">
+              <!-- <img class="img-fluid mb-5" src="img/portfolio/cake.png" alt=""> -->
+			  <div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="Map-Pages/Ronan - Age Of Death.html"></iframe>
+			  </div>
+              <!-- <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close Project</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio Modal 3 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-3">
+      <div class="portfolio-modal-dialog bg-white">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Eldren and Efron - Age Of Men</h2>
+              <hr class="star-dark mb-5">
+              <!-- <img class="img-fluid mb-5" src="img/portfolio/circus.png" alt=""> -->
+			  <div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="Map-Pages/Eldren and Efron Age Of Men Map.html"></iframe>
+			  </div>
+              <!-- <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close Project</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio Modal 4 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-4">
+      <div class="portfolio-modal-dialog bg-white">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Korthar and Ramshorn</h2>
+              <hr class="star-dark mb-5">
+              <!-- <img class="img-fluid mb-5" src="img/portfolio/game.png" alt=""> -->
+			  <div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="Map-Pages/World of Meyvis - Korthar and Ramshorn.html"></iframe>
+			  </div>
+              <!-- <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close Project</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio Modal 5 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-5">
+      <div class="portfolio-modal-dialog bg-white">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Hiyal, City of Intrigue</h2>
+              <hr class="star-dark mb-5">
+              <!-- <img class="img-fluid mb-5" src="img/portfolio/safe.png" alt=""> -->
+			  <div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="Map-Pages/Hiyal, City of Intrigue.html"></iframe>
+			  </div>			  
+              <!-- <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close Project</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio Modal 6 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-6">
+      <div class="portfolio-modal-dialog bg-white">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Wasat, The Middle City</h2>
+              <hr class="star-dark mb-5">
+              <!-- <img class="img-fluid mb-5" src="img/portfolio/submarine.png" alt=""> -->
+			  <div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="Map-Pages/Wasat, The Middle City.html"></iframe>
+			  </div>	
+              <!-- <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close Project</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+    <!-- Portfolio Modal 7 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-7">
+      <div class="portfolio-modal-dialog bg-white">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-12 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Hiyal Palace</h2>
+              <hr class="star-dark mb-5">
+              <!-- <img class="img-fluid mb-5" src="img/portfolio/submarine.png" alt=""> -->
+			  <div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="Map-Pages/Hiyal-Palace.html"></iframe>
+			  </div>
+              <!-- <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close Project</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>	
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/freelancer.min.js"></script>
+
   </body>
+
 </html>
